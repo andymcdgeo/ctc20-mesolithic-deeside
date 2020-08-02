@@ -1,5 +1,4 @@
 import csv, json
-from OSGridConverter import grid2latlong
 
 colours = {'core': '#FF0000',
            'chip': '#FFFFFF',
@@ -19,25 +18,26 @@ data = []
 lats = []
 lngs = []
 
-with open('CTC20-MesoDeeside - 2017.csv') as f:
+with open('CTC20-MesoDeeside - 2017-19.csv') as f:
     reader = csv.reader(f)
     for row in reader:
         if row[0] == 'ID':
-            continue
-        gridref = '{}, {}'.format(row[1], row[2])
-        # print(gridref)
-        try:
-            l = grid2latlong(gridref, tag='OSGB36')
-        except:
-            print("Can't convert to lat long: ", row)
+            print("There are ", len(row), "fields")
             continue
         t = row[ord('l')-ord('a')].lower()
         if t in colours.keys():
             c = colours[t]
         else:
             c = def_colour
-        data.append({'lat':l.latitude,
-                     'lon':l.longitude,
+        try:
+            lat = float(row[ord('z')-ord('a')+2])
+            lon = float(row[ord('z')-ord('a')+3])
+            lats.append(lat)
+            lngs.append(lon)
+        except:
+            continue
+        data.append({'lat':lat,
+                     'lon':lon,
                      'type':row[ord('l')-ord('a')],
                      'subType':row[ord('m')-ord('a')],
                      'classification':row[ord('n')-ord('a')],
@@ -45,8 +45,6 @@ with open('CTC20-MesoDeeside - 2017.csv') as f:
                      'photo':row[ord('u')-ord('a')],
                      'colour':c,
                      })
-        lats.append(l.latitude)
-        lngs.append(l.longitude)
 
 with open('data.json', 'w') as f:
     json.dump(data, f, indent=1)
