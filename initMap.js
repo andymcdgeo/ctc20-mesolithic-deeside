@@ -7,9 +7,29 @@ function initMap() {
       document.getElementById('map'), {zoom: 12, center: center});
   // The marker, positioned at Uluru
     for(m of data) {
-        var marker = new google.maps.Marker({position: {lat: m["lat"], lng: m["lon"]}, map: map});
+        var contentString = '<div id="content">'+
+            '<h1>'+m['type']+'</h1>'+
+            '<h2>'+m['subType']+'</h2>'+
+            '<h2>'+m['classification']+'</h2>'+
+            '<p>'+m['description']+'</h2>';
+        if(m['photo']) {
+            contentString = contentString+'<img src='+m['photo']+'>';
+        }
+        var marker = new google.maps.Marker({position: {lat: m["lat"], lng: m["lon"]},
+                                             map: map}
+                                           );
+        addInfo(marker, contentString);
+       
     }
 }
+
+function addInfo(marker, contentString) {
+    var infoWindow = new google.maps.InfoWindow({content: contentString});
+    marker.addListener('click', function() {
+        infoWindow.open(map, marker);
+    });
+}
+    
 
 data =[
  {
