@@ -1,6 +1,7 @@
 // Initialize and add the map
 function initMap() {
-    // The location of Uluru
+  var markerImg = document.querySelector('.markerImage').innerHTML;
+    console.log(markerImg);  
   var center = {lat: 57.06, lng: -2.42};
   // The map, centered at center
   var map = new google.maps.Map(
@@ -15,9 +16,15 @@ function initMap() {
         if(m['photo']) {
             contentString = contentString+'<img src='+m['photo']+'>';
         }
-        var marker = new google.maps.Marker({position: {lat: m["lat"], lng: m["lon"]},
-                                             map: map}
-                                           );
+        var marker = new google.maps.Marker({
+            position: {lat: m["lat"], lng: m["lon"]},
+            map: map,
+            icon: {
+                anchor: new google.maps.Point(24, 24),
+                url: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(markerImg.replace('{{colour}}', m['colour'])),
+                scaledSize: new google.maps.Size(24, 24)
+            }
+        });
         addInfo(marker, contentString);
        
     }
