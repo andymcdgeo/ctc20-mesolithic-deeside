@@ -13,13 +13,13 @@ function initMap() {
             '<table style="padding: 5px;"><tr>'+
             '<tr><td><strong>Latitude: </strong></td><td> '+m['lat']+'</td></tr>'+
             '<tr><td><strong>Longitude:</strong></td><td> '+m['lon']+'</td></tr>'+
-            '<tr><td><strong>Northing: </strong></td><td> '+m['long']+'</td></tr>'+
-            '<tr><td><strong>Easting: </strong></td><td> '+m['long']+'</td></tr>'+
+            '<tr><td><strong>Northing: </strong></td><td> '+m['northing']+'</td></tr>'+
+            '<tr><td><strong>Easting: </strong></td><td> '+m['easting']+'</td></tr>'+
             '<td><strong>Sub Type: </strong></td><td>'+m['subType']+'</td></tr>'+
             '<tr><td><strong>Classification: </strong></td><td> '+m['classification']+'</td></tr>'+
             '<tr><td><strong>Condition: </strong></td><td> '+m['condition']+'</td></tr>'+
-            '<tr><td><strong>Raw Material: </strong></td><td> '+m['rawmaterial']+'</td></tr>'+
-            '<tr><td><strong>No of Pieces: </strong></td><td> '+m['number']+'</td></tr>'+
+            '<tr><td><strong>Raw Material: </strong></td><td> '+m['rawMaterial']+'</td></tr>'+
+            '<tr><td><strong>No of Pieces: </strong></td><td> '+m['totalAC']+'</td></tr>'+
             '<tr><td><strong>Description: </strong></td><td> '+m['description']+'</td></tr></table>';
         if(m['photo']) {
             contentString = contentString+'<strong>Photo:</strong><br><img src='+m['photo']+'>';
