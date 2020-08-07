@@ -20,3 +20,44 @@ display: block !important;
     border-collapse: collapse;
 }   
 
+.legend {
+    display: inline;
+}
+
+.category {
+    
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+}
+
+#core {
+    background-color :#ffadad;
+}
+
+#natural {
+    background-color: #f8edeb;
+}
+
+#chunk {
+    background-color: #fdffb6;
+}
+
+#retouched {
+    background-color: #ffc6ff;
+}
+
+#blade {
+    background-color: #a0c4ff;
+}
+
+#flake {
+    background-color: #ffd6a5;
+}
+
+#other {
+    background-color: #e5e5e5;
+}
