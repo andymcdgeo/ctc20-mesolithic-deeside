@@ -62,35 +62,50 @@ function toggle_markers(markers, active) {
     }
 }
 
+function toggle_colour(id, colour, active) {
+    var el = document.getElementById(id);
+    if(active) {
+        el.style.backgroundColor = colour;
+    } else {
+        el.style.backgroundColor = '#ffffff';
+    }
+}
 
 function toggle_core() {
     console.log("toggle core")
     toggle_markers(core_markers, core_active);
     core_active = !core_active;
+    toggle_colour("core", core_colour, core_active);
 }
 function toggle_flake() {
     toggle_markers(flake_markers, flake_active);
     flake_active = !flake_active;
+    toggle_colour("flake", flake_colour, flake_active);
 }
 function toggle_blade() {
     toggle_markers(blade_markers, blade_active);
     blade_active = !blade_active;
+    toggle_colour("blade", blade_colour, blade_active);
 }
 function toggle_retouched() {
     toggle_markers(retouched_markers, retouched_active);
     retouched_active = !retouched_active;
+    toggle_colour("retouched", retouched_colour, retouched_active);
 }
 function toggle_chunk() {
     toggle_markers(chunk_markers, chunk_active);
     chunk_active = !chunk_active;
+    toggle_colour("chunk", chunk_colour, chunk_active);
 }
 function toggle_natural() {
     toggle_markers(natural_markers, natural_active);
     natural_active = !natural_active;
+    toggle_colour("natural", natural_colour, natural_active);
 }
 function toggle_other() {
     toggle_markers(other_markers, other_active);
     other_active = !other_active;
+    toggle_colour("other", other_colour, other_active);
 }
 
 
