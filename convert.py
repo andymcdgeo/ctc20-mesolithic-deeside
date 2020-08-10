@@ -1,4 +1,5 @@
 import csv, json
+from categorise import categorise
 
 colours = {'core': '#FF0000',
            'chip': '#FFFFFF',
@@ -14,7 +15,14 @@ colours = {'core': '#FF0000',
            'scraper': '#DAA520',
            'point': '#D2691E'}
 def_colour = '#00FF00'
-data = []
+data = {'natural': [],
+        'chunk': [],
+        'retouched': [],
+        'blade': [],
+        'flake': [],
+        'core': [],
+        'other': []}
+
 lats = []
 lngs = []
 
@@ -36,20 +44,21 @@ with open('CTC20-MesoDeeside - 2017-19.csv') as f:
             lngs.append(lon)
         except:
             continue
-        data.append({'lat':lat,
-                     'lon':lon,
-                     'type':row[ord('l')-ord('a')],
-                     'subType':row[ord('m')-ord('a')],
-                     'rawMaterial':row[ord('i')-ord('a')],
-                     'condition':row[ord('k')-ord('a')],
-                     'totalAC':row[ord('j')-ord('a')],
-                     'easting':row[ord('b')-ord('a')],
-                     'northing':row[ord('c')-ord('a')],
-                     'classification':row[ord('n')-ord('a')],
-                     'description':row[ord('o')-ord('a')],
-                     'photo':row[ord('u')-ord('a')],
-                     'colour':c,
-                     })
+        data[categorise(row[ord('l')-ord('a')])].append(
+            {'lat':lat,
+             'lon':lon,
+             'type':row[ord('l')-ord('a')],
+             'subType':row[ord('m')-ord('a')],
+             'rawMaterial':row[ord('i')-ord('a')],
+             'condition':row[ord('k')-ord('a')],
+             'totalAC':row[ord('j')-ord('a')],
+             'easting':row[ord('b')-ord('a')],
+             'northing':row[ord('c')-ord('a')],
+             'classification':row[ord('n')-ord('a')],
+             'description':row[ord('o')-ord('a')],
+             'photo':row[ord('u')-ord('a')],
+             'colour':c,
+            })
 
 with open('data.json', 'w') as f:
     json.dump(data, f, indent=1)
